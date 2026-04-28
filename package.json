@@ -1,0 +1,15 @@
+{
+  "name": "wattnow",
+  "private": true,
+  "workspaces": [
+    "types",
+    "bridge",
+    "web"
+  ],
+  "scripts": {
+    "dev:bridge": "npm run dev --workspace=bridge",
+    "dev:web": "npm run dev --workspace=web",
+    "build": "npm run build --workspaces",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  }
+}
