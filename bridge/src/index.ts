@@ -16,6 +16,10 @@ if (!supabaseUrl || !supabaseKey) {
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+console.log(
+  `[bridge] Connecting to ${mqttBrokerUrl} | username=${mqttUsername ?? "(unset)"} | password length=${mqttPassword?.length ?? 0}`
+);
+
 const mqttClient = mqtt.connect(mqttBrokerUrl, {
   username: mqttUsername,
   password: mqttPassword,
