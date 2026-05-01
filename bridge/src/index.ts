@@ -3,6 +3,8 @@ import mqtt from "mqtt";
 import { createClient } from "@supabase/supabase-js";
 
 const mqttBrokerUrl = process.env.MQTT_BROKER_URL || "mqtt://localhost:1883";
+const mqttUsername = process.env.MQTT_USERNAME;
+const mqttPassword = process.env.MQTT_PASSWORD;
 const mqttTopic = process.env.MQTT_TOPIC || "sensors/+/data";
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
@@ -14,7 +16,10 @@ if (!supabaseUrl || !supabaseKey) {
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-const mqttClient = mqtt.connect(mqttBrokerUrl);
+const mqttClient = mqtt.connect(mqttBrokerUrl, {
+  username: mqttUsername,
+  password: mqttPassword,
+});
 
 mqttClient.on("connect", () => {
   console.log(`Connected to MQTT broker: ${mqttBrokerUrl}`);
