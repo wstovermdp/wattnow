@@ -5,6 +5,7 @@ node_modules/
 dist/
 .next/
 out/
+*.tsbuildinfo
 
 # Environment & secrets
 .env
@@ -27,3 +28,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Notes
+progress.txt

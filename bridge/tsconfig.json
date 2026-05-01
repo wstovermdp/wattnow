@@ -5,11 +5,11 @@
     "lib": ["ES2022"],
     "strict": true,
     "outDir": "dist",
-    "rootDir": "src",
+    "rootDir": ".",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "include": ["src"]
+  "include": ["src", "scripts"]
 }

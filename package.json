@@ -9,6 +9,7 @@
   "scripts": {
     "dev:bridge": "npm run dev --workspace=bridge",
     "dev:web": "npm run dev --workspace=web",
+    "dev:publisher": "npm run publisher --workspace=bridge",
     "build": "npm run build --workspaces",
     "typecheck": "npm run typecheck --workspaces --if-present"
   }
