@@ -8,7 +8,7 @@ const mqttPassword = process.env.MQTT_PASSWORD;
 const mqttTopic = process.env.MQTT_TOPIC || "sensors/+/data";
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
-const supabaseTable = process.env.SUPABASE_TABLE || "mqtt_data";
+const supabaseTable = process.env.SUPABASE_TABLE || "telemetry";
 
 if (!supabaseUrl || !supabaseKey) {
   throw new Error("SUPABASE_URL and SUPABASE_KEY environment variables are required");
@@ -35,11 +35,18 @@ mqttClient.on("connect", () => {
 mqttClient.on("message", async (topic, message) => {
   try {
     const payload = JSON.parse(message.toString());
-    
+
     const record = {
-      topic,
-      payload,
-      received_at: new Date().toISOString(),
+      device_id: payload.deviceId,
+      firmware_version: payload.firmwareVersion,
+      timestamp: payload.timestamp ? new Date(payload.timestamp * 1000).toISOString() : null,
+      soc: payload.soc,
+      battery_voltage: payload.batteryVoltage,
+      load_current: payload.loadCurrent,
+      panel_voltage: payload.panelVoltage,
+      panel_current: payload.panelCurrent,
+      charge_state: payload.chargeState,
+      error_code: payload.errorCode ?? 0,
     };
 
     const { error } = await supabase
